@@ -8,7 +8,7 @@ license = "MIT"
 keywords = [
   "bevy",
   "args",
-  "command-line-arguments",
+  "cli",
   "query-parameters",
 ]
 homepage = "https://github.com/mosure/bevy_args"
