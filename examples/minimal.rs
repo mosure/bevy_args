@@ -1,18 +1,22 @@
-# bevy_args
-bevy plugin to parse command line arguments and URL query parameters
+use bevy::prelude::*;
+use clap::Parser;
+use serde::{
+    Deserialize,
+    Serialize,
+};
 
+#[cfg(target_arch = "wasm32")]
+use wasm_bindgen::prelude::*;
 
-## command line arguments
-`cargo run --example=minimal -- --my_string hello --my_int 42 --my_bool`
-
-## URL query parameters
-`http://localhost:8080/?my_string=hello&my_int=42&my_bool=true`
-
-
-## minimal example
-
-```rust
 use bevy_args::BevyArgsPlugin;
+
+
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
 
 
 #[derive(
@@ -26,17 +30,23 @@ use bevy_args::BevyArgsPlugin;
 #[command(about = "a minimal example of bevy_args", version, long_about = None)]
 pub struct MinimalArgs {
     #[arg(long, default_value = "hello")]
+    #[serde(default)]
     pub my_string: String,
 
     #[arg(long, default_value = "42")]
+    #[serde(default)]
     pub my_int: i32,
 
     #[arg(long)]
+    #[serde(default)]
     pub my_bool: bool,
 }
 
 
 pub fn main() {
+    #[cfg(target_arch = "wasm32")]
+    console_error_panic_hook::set_once();
+
     let mut app = App::new();
 
     app.add_plugins(BevyArgsPlugin::<MinimalArgs>::default());
@@ -46,13 +56,9 @@ pub fn main() {
 }
 
 fn print_minimal_args(args: Res<MinimalArgs>) {
+    #[cfg(target_arch = "wasm32")]
+    log(format!("{:?}", *args).as_str());
+
+    #[cfg(not(target_arch = "wasm32"))]
     println!("{:?}", *args);
 }
-```
-
-
-## compatible bevy versions
-
-| `bevy_args` | `bevy` |
-| :--                       | :--    |
-| `1.0`               | `0.12` |

@@ -1,0 +1,80 @@
+[package]
+name = "bevy_args"
+description = "bevy plugin to parse command line arguments and URL query parameters"
+version = "2.0.2"
+edition = "2021"
+authors = ["mosure <mitchell@mosure.me>"]
+license = "MIT"
+keywords = [
+  "bevy",
+  "args",
+  "command-line-arguments",
+  "query-parameters",
+]
+homepage = "https://github.com/mosure/bevy_args"
+repository = "https://github.com/mosure/bevy_args"
+readme = "README.md"
+exclude = [
+  ".devcontainer",
+  ".github",
+  "docs",
+  "dist",
+  "build",
+  "assets",
+  "credits",
+]
+
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+serde = "1.0"
+serde_qs = "0.12"
+
+
+[dependencies.bevy]
+version = "0.12"
+default-features = false
+
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1"
+wasm-bindgen = "0.2"
+
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  'Document',
+  'Element',
+  'HtmlElement',
+  'Location',
+  'Node',
+  'Window',
+]
+
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = 3
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+
+
+[lib]
+path = "src/lib.rs"
+
+
+[examples]
+name = "minimal"
+path = "examples/minimal.rs"

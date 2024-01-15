@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../"
+		},
+		{
+			"path": "../../bevy"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "bevy_gaussian_splatting"
+	}
+}
