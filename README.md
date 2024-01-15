@@ -1,4 +1,4 @@
-# bevy_args
+# bevy_args 🧩
 [![test](https://github.com/mosure/bevy_args/workflows/test/badge.svg)](https://github.com/Mosure/bevy_args/actions?query=workflow%3Atest)
 [![GitHub License](https://img.shields.io/github/license/mosure/bevy_args)](https://raw.githubusercontent.com/mosure/bevy_args/main/LICENSE)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/mosure/bevy_args)](https://github.com/mosure/bevy_args)
