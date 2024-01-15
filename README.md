@@ -1,5 +1,13 @@
 # bevy_args
-bevy plugin to parse command line arguments and URL query parameters
+[![test](https://github.com/mosure/bevy_args/workflows/test/badge.svg)](https://github.com/Mosure/bevy_args/actions?query=workflow%3Atest)
+[![GitHub License](https://img.shields.io/github/license/mosure/bevy_args)](https://raw.githubusercontent.com/mosure/bevy_args/main/LICENSE)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/mosure/bevy_args)](https://github.com/mosure/bevy_args)
+[![GitHub Releases](https://img.shields.io/github/v/release/mosure/bevy_args?include_prereleases&sort=semver)](https://github.com/mosure/bevy_args/releases)
+[![GitHub Issues](https://img.shields.io/github/issues/mosure/bevy_args)](https://github.com/mosure/bevy_args/issues)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mosure/bevy_args.svg)](http://isitmaintained.com/project/mosure/bevy_args)
+[![crates.io](https://img.shields.io/crates/v/bevy_args.svg)](https://crates.io/crates/bevy_args)
+
+bevy plugin to parse command line arguments and URL query parameters into resources
 
 
 ## command line arguments
