@@ -4,8 +4,8 @@ use std::marker::PhantomData;
 use std::collections::HashMap;
 
 use bevy::prelude::*;
-use clap::Parser;
-use serde::{
+pub use clap::Parser;
+pub use serde::{
     Deserialize,
     Serialize,
 };

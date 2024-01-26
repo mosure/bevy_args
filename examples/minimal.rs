@@ -1,14 +1,14 @@
 use bevy::prelude::*;
-use clap::Parser;
-use serde::{
-    Deserialize,
-    Serialize,
-};
 
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
 
-use bevy_args::BevyArgsPlugin;
+use bevy_args::{
+    BevyArgsPlugin,
+    Deserialize,
+    Parser,
+    Serialize,
+};
 
 
 #[cfg(target_arch = "wasm32")]
