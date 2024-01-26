@@ -31,14 +31,12 @@ impl<R: Default + Parser + Resource + Serialize + for<'a> Deserialize<'a>> Plugi
     fn build(&self, app: &mut App) {
         app.insert_resource(R::default());
 
-        app.add_systems(PreStartup, parse_args::<R>);
+        app.add_systems(PreStartup, parse_args_system::<R>);
     }
 }
 
 
-fn parse_args<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>(
-    mut args: ResMut<R>,
-) {
+pub fn parse_args<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>() -> R {
     #[cfg(target_arch = "wasm32")]
     {
         let window = web_sys::window().unwrap();
@@ -47,11 +45,16 @@ fn parse_args<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>(
 
         let query_string = search.trim_start_matches('?');
 
-        *args = from_str(query_string).unwrap();
+        return from_str(query_string).unwrap();
     }
 
     #[cfg(not(target_arch = "wasm32"))]
-    {
-        *args = R::parse();
-    }
+    R::parse()
+}
+
+
+fn parse_args_system<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>(
+    mut args: ResMut<R>,
+) {
+    *args = parse_args::<R>();
 }
