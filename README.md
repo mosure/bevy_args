@@ -62,5 +62,6 @@ fn print_minimal_args(args: Res<MinimalArgs>) {
 ## compatible bevy versions
 
 | `bevy_args` | `bevy` |
-| :--                       | :--    |
-| `1.0`               | `0.12` |
+| :--         | :--    |
+| `1.3`       | `0.13` |
+| `1.0`       | `0.12` |
