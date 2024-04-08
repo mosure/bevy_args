@@ -28,7 +28,7 @@ exclude = [
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
 serde = "1.0"
-serde_qs = "0.12"
+serde_qs = "0.13"
 
 
 [dependencies.bevy]
