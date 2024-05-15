@@ -30,15 +30,12 @@ extern "C" {
 #[command(about = "a minimal example of bevy_args", version, long_about = None)]
 pub struct MinimalArgs {
     #[arg(long, default_value = "hello")]
-    #[serde(default)]
     pub my_string: String,
 
     #[arg(long, default_value = "42")]
-    #[serde(default)]
     pub my_int: i32,
 
     #[arg(long)]
-    #[serde(default)]
     pub my_bool: bool,
 }
 
