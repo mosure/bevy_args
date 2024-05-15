@@ -34,7 +34,28 @@ where
 
     for (key, value) in query_map {
         if let Some(field) = instance_json.get_mut(&key) {
-            *field = serde_json::Value::String(value);
+            let updated_value = match field {
+                serde_json::Value::String(_) => serde_json::Value::String(value.clone()),
+                serde_json::Value::Number(_) => {
+                    if let Ok(num) = value.parse::<i64>() {
+                        serde_json::Value::Number(num.into())
+                    } else if let Ok(num) = value.parse::<f64>() {
+                        serde_json::Value::Number(serde_json::Number::from_f64(num).unwrap())
+                    } else {
+                        serde_json::Value::String(value.clone())
+                    }
+                }
+                serde_json::Value::Bool(_) => {
+                    if let Ok(b) = value.parse::<bool>() {
+                        serde_json::Value::Bool(b)
+                    } else {
+                        serde_json::Value::String(value.clone())
+                    }
+                }
+                serde_json::Value::Null => serde_json::Value::String(value.clone()),
+                _ => serde_json::Value::String(value.clone()), // Handle other types as strings for simplicity
+            };
+            *field = updated_value;
         }
     }
 
