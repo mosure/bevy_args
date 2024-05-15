@@ -31,7 +31,6 @@ where
     R: Serialize + for<'de> Deserialize<'de>,
 {
     for (key, value) in query_map {
-        // Using serde's ability to deserialize from maps to update struct
         let update_map = [(key, value)].iter().cloned().collect::<HashMap<_, _>>();
         let update_str = serde_urlencoded::to_string(update_map).unwrap();
         let update_instance: R = serde_urlencoded::from_str(&update_str).unwrap_or(instance);
