@@ -30,12 +30,15 @@ fn update_struct<R>(mut instance: R, query_map: HashMap<String, String>) -> R
 where
     R: Serialize + for<'de> Deserialize<'de>,
 {
+    let mut instance_json = serde_json::to_value(&instance).unwrap();
+
     for (key, value) in query_map {
-        let update_map = [(key, value)].iter().cloned().collect::<HashMap<_, _>>();
-        let update_str = serde_urlencoded::to_string(update_map).unwrap();
-        let update_instance: R = serde_urlencoded::from_str(&update_str).unwrap_or(instance);
-        instance = update_instance;
+        if let Some(field) = instance_json.get_mut(&key) {
+            *field = serde_json::Value::String(value);
+        }
     }
+
+    instance = serde_json::from_value(instance_json).unwrap();
     instance
 }
 
