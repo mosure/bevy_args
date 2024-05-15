@@ -46,14 +46,6 @@ impl<R> Default for BevyArgsPlugin<R> {
 
 impl<R: Default + Parser + Resource + Serialize + for<'a> Deserialize<'a>> Plugin for BevyArgsPlugin<R> {
     fn build(&self, app: &mut App) {
-        app.insert_resource(R::default());
-
-        app.add_systems(PreStartup, parse_args_system::<R>);
+        app.insert_resource(parse_args::<R>());
     }
-}
-
-fn parse_args_system<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>(
-    mut args: ResMut<R>,
-) {
-    *args = parse_args::<R>();
 }
