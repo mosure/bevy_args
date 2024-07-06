@@ -11,7 +11,7 @@ bevy plugin to parse command line arguments and URL query parameters into resour
 
 
 ## command line arguments
-`cargo run --example=minimal -- --my_string hello --my_int 42 --my_bool`
+`cargo run --example=minimal -- --my-string hello --my-int 42 --my-bool`
 
 ## URL query parameters
 `http://localhost:8080/?my_string=hello&my_int=42&my_bool=true`
@@ -63,5 +63,6 @@ fn print_minimal_args(args: Res<MinimalArgs>) {
 
 | `bevy_args` | `bevy` |
 | :--         | :--    |
+| `1.5`       | `0.14` |
 | `1.3`       | `0.13` |
 | `1.0`       | `0.12` |
