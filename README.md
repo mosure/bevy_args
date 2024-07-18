@@ -11,10 +11,10 @@ bevy plugin to parse command line arguments and URL query parameters into resour
 
 
 ## command line arguments
-`cargo run --example=minimal -- --my-string hello --my-int 42 --my-bool`
+`cargo run --example=minimal -- --my-string hello --my-int 42 --my-bool --my-enum another-value`
 
 ## URL query parameters
-`http://localhost:8080/?my_string=hello&my_int=42&my_bool=true`
+`http://localhost:8080/?my_string=hello&my_int=42&my_bool=true&my_enum=AnotherValue`
 
 
 ## minimal example

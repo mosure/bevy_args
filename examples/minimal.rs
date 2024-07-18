@@ -8,6 +8,7 @@ use bevy_args::{
     Deserialize,
     Parser,
     Serialize,
+    ValueEnum,
 };
 
 
@@ -18,6 +19,22 @@ extern "C" {
     fn log(s: &str);
 }
 
+
+#[derive(
+    Debug,
+    Default,
+    Clone,
+    PartialEq,
+    Serialize,
+    Deserialize,
+    Reflect,
+    ValueEnum,
+)]
+pub enum MyEnum {
+    #[default]
+    SomeValue,
+    AnotherValue,
+}
 
 #[derive(
     Default,
@@ -37,6 +54,9 @@ pub struct MinimalArgs {
 
     #[arg(long)]
     pub my_bool: bool,
+
+    #[arg(long, value_enum, default_value_t = MyEnum::SomeValue)]
+    pub my_enum: MyEnum,
 }
 
 

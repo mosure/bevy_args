@@ -4,7 +4,10 @@ use std::marker::PhantomData;
 use std::collections::HashMap;
 
 use bevy::prelude::*;
-pub use clap::Parser;
+pub use clap::{
+    Parser,
+    ValueEnum,
+};
 pub use serde::{
     Deserialize,
     Serialize,
