@@ -67,7 +67,7 @@ where
 }
 
 
-pub fn parse_args<R: Resource + Parser + Serialize + for<'a> Deserialize<'a>>() -> R {
+pub fn parse_args<R: Parser + Serialize + for<'a> Deserialize<'a>>() -> R {
     #[cfg(target_arch = "wasm32")]
     {
         let window = web_sys::window().unwrap();
