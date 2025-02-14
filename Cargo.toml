@@ -1,7 +1,7 @@
 [package]
 name = "bevy_args"
 description = "bevy plugin to parse command line arguments and URL query parameters"
-version = "1.7.0"
+version = "1.7.1"
 edition = "2021"
 authors = ["mosure <mitchell@mosure.me>"]
 license = "MIT"

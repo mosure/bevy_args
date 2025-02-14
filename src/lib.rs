@@ -19,7 +19,7 @@ fn parse_query_string(query: &str) -> HashMap<String, String> {
     query
         .split('&')
         .filter_map(|pair| {
-            let mut iter = pair.split('=');
+            let mut iter = pair.splitn(2, '=');
             match (iter.next(), iter.next()) {
                 (Some(key), Some(value)) => Some((key.to_string(), value.to_string())),
                 _ => None,
