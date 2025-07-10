@@ -1,9 +1,6 @@
-use std::marker::PhantomData;
-
 #[cfg(target_arch = "wasm32")]
 use std::collections::HashMap;
 
-use bevy::prelude::*;
 pub use clap::{
     Parser,
     ValueEnum,
@@ -12,6 +9,12 @@ pub use serde::{
     Deserialize,
     Serialize,
 };
+
+
+#[cfg(feature = "bevy")]
+mod plugin;
+#[cfg(feature = "bevy")]
+pub use plugin::BevyArgsPlugin;
 
 
 #[cfg(target_arch = "wasm32")]
@@ -83,22 +86,4 @@ pub fn parse_args<R: Parser + Serialize + for<'a> Deserialize<'a>>() -> R {
 
     #[cfg(not(target_arch = "wasm32"))]
     R::parse()
-}
-
-
-pub struct BevyArgsPlugin<R> {
-    phantom: PhantomData<fn() -> R>,
-}
-impl<R> Default for BevyArgsPlugin<R> {
-    fn default() -> Self {
-        Self {
-            phantom: PhantomData,
-        }
-    }
-}
-
-impl<R: Default + Parser + Resource + Serialize + for<'a> Deserialize<'a>> Plugin for BevyArgsPlugin<R> {
-    fn build(&self, app: &mut App) {
-        app.insert_resource(parse_args::<R>());
-    }
 }
