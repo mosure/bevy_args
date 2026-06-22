@@ -15,8 +15,11 @@ homepage = "https://github.com/mosure/bevy_args"
 repository = "https://github.com/mosure/bevy_args"
 readme = "README.md"
 exclude = [
+  ".cargo",
   ".devcontainer",
   ".github",
+  ".vscode",
+  "Cargo.lock",
   "docs",
   "dist",
   "build",
