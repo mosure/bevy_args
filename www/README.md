@@ -1,4 +1,4 @@
-# bevy_gaussian_splatting for web
+# bevy_args for web
 
 ## wasm support
 

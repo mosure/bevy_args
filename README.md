@@ -63,6 +63,7 @@ fn print_minimal_args(args: Res<MinimalArgs>) {
 
 | `bevy_args` | `bevy` |
 | :--         | :--    |
+| `4.0`       | `0.19` |
 | `3.0`       | `0.18` |
 | `2.0`       | `0.17` |
 | `1.8`       | `0.16` |
